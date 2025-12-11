@@ -8,4 +8,8 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+   base: './',
+  build: {
+    outDir: 'C:/Users/ixlaw/Documents/build'
+  }
 })

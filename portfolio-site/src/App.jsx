@@ -96,12 +96,24 @@ const Page1 = ({ onNavigate }) => {
           <div className="flex gap-8 items-stretch">
             
             {/* Image Section */}
-            <div className="hidden md:flex w-96 min-h-[32rem] bg-white/80 backdrop-blur-sm rounded-l-[4rem] shadow-lg items-center justify-center flex-shrink-0 border border-blue-100 p-3">
+            <div className="hidden md:flex w-96 min-h-[32rem] bg-white/80 backdrop-blur-sm rounded-l-[4rem] shadow-lg items-center justify-center flex-shrink-0 border border-blue-100 p-3 relative">
               <img 
                 src={profileImg}
                 alt="Profile" 
                 className="w-full h-full object-cover rounded-l-[3.5rem]" 
               />
+              <div className="absolute bottom-6 right-6 text-white text-xs bg-black/50 backdrop-blur-sm px-3 py-1 rounded-l-full opacity-60 transition-transform duration-300"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.1)';
+                  e.currentTarget.style.textDecoration = 'underline';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.textDecoration = 'none';
+                }}>
+              
+                <a href='https://x.com/xdeyuix' target="_blank">Art: @xdeyuix</a>
+              </div>
             </div>
 
             {/* Right Content */}
