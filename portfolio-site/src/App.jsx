@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import profileImg from './assets/profile_img.jpg';
 
+
+const tiltCard = () =>{
+  return 
+    <div className="w-96 min-h-[32rem] bg-white/80 backdrop-blur-sm rounded-l-[4rem] shadow-lg flex items-center justify-center flex-shrink-0 border border-blue-100 p-3">
+      <img 
+        src={profileImg}
+        alt="Profile" 
+        className="w-full h-full object-cover rounded-l-[3.5rem]" 
+      />
+    </div>
+};
+
 // Page 1 Component
 const Page1 = ({ onNavigate }) => {
   const [rectangles, setRectangles] = React.useState([]);
   const [animationEnabled, setAnimationEnabled] = React.useState(true);
-  const technologies = ['React', 'Tailwind CSS', 'Python', 'SaSS', 'Figma', 'Git', 'Vite'];
+  const technologies = ['React JS', 'Tailwind CSS', 'Python', 'SaSS', 'Figma', 'Git', 'Vite'];
+  const socials = ['Discord', 'Facebook', 'LinkedIn', 'GitHub'];
 
   React.useEffect(() => {
     if (!animationEnabled) return;
@@ -31,7 +44,7 @@ const Page1 = ({ onNavigate }) => {
   }, [animationEnabled]);
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-white">
+    <div className="absolute w-full h-screen overflow-hidden bg-white">
       {/* Toggle Button */}
       <div className="absolute top-6 left-6 z-20 group">
         <button
@@ -91,7 +104,7 @@ const Page1 = ({ onNavigate }) => {
 
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center h-full p-8">
-        <div className="w-full max-w-6xl shadow-xl p-8 rounded-3xl border-4 border-white/30">
+        <div className="absolute w-full max-w-6xl shadow-xl p-8 rounded-3xl border-4 border-white/30">
           <div className="flex gap-8 items-stretch">
             
             {/* Image Section */}
@@ -114,10 +127,10 @@ const Page1 = ({ onNavigate }) => {
               {/* Description */}
               <div className="flex-1 bg-white/80 backdrop-blur-sm shadow-lg p-8 border border-blue-100 flex items-center">
                 <p className="text-xl text-gray-600 leading-relaxed">
-                  I'm Lawrence,<br /> a Front-end Developer speciallizing in UI design. <br /> Stationed in <span className="font-bold text-green-500">Philippines</span><br /><br /> <hr /><br />
-                  <ul className= "text-sm">
-                    <li>I use light mode</li>
-                    <li>Coffee is gud</li>
+                  I'm Lawrence,<br /> a Front-end Developer speciallizes in UI design and React JS. <br /> Designated in <span className="font-bold text-green-500">Philippines</span><br /><br /> <hr /><br />
+                  <ul className= "text-base">
+                    <li>1 year of front-end development</li>
+                    <li>2 years of python</li>
                   </ul>
                 </p>
               </div>
@@ -128,7 +141,7 @@ const Page1 = ({ onNavigate }) => {
                   {technologies.map((tech, index) => (
                     <div 
                       key={index}
-                      className="border border-gray-200 px-4 py-2 bg-white/60 rounded-xl text-sm font-medium text-gray-700 transition-all duration-300 hover:border-blue-400 hover:shadow-lg cursor-pointer"
+                      className="border border-gray-200 px-4 py-2 bg-white/60 rounded-xl text-sm text-gray-700 transition-all duration-300 hover:border-blue-400 hover:shadow-lg cursor-pointer"
                       style={{ transition: 'all 0.3s ease' }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.boxShadow = '0 0 20px rgba(71, 255, 102, 0.5)';
@@ -151,10 +164,11 @@ const Page1 = ({ onNavigate }) => {
       </div>
 
       {/* Navigation Link */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+      <div className="absolute bottom-8 right-8  z-20">
         <button
           onClick={onNavigate}
-          className="text-green-500 text-xl underline hover:text-green-600 transition-colors duration-300 hover:scale-110 transform"
+          className="text-green-500 text-xl underline hover:text-green-600 transition-colors duration-300 hover:scale-110 transform text-opacity-70"
+
         >
           my projects
         </button>
@@ -176,7 +190,6 @@ const Page1 = ({ onNavigate }) => {
 
 const Page2 = ({ onNavigate }) => {
   return (
-    
     
     <div className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-white-100 to-blue-100">
       <div 
@@ -235,9 +248,14 @@ const TransitionOverlay = ({ phase, direction }) => {
 const App = () => {
   const [currentPage, setCurrentPage] = useState('page1');
   const [transitionPhase, setTransitionPhase] = useState('idle');
-  const [direction, setDirection] = useState('forward');
+  const [direction, setDirection] = useState('backward');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleNavigate = (targetPage) => {
+    if (isTransitioning) return; // Prevent multiple transitions
+    
+    setIsTransitioning(true);
+    
     // Determine direction
     const isForward = targetPage === 'page2';
     setDirection(isForward ? 'forward' : 'backward');
@@ -258,8 +276,39 @@ const App = () => {
     // Phase 4: Stay at exit position
     setTimeout(() => {
       setTransitionPhase('idle');
+      setIsTransitioning(false);
     }, 1400);
   };
+
+  // Scroll event listener
+  useEffect(() => {
+    let lastScrollTime = 0;
+    const scrollThrottle = 1500; // Prevent rapid scrolling
+
+    const handleWheel = (e) => {
+      if (e.ctrlKey || e.metaKey) return;
+      
+      const now = Date.now();
+      if (now - lastScrollTime < scrollThrottle || isTransitioning) return;
+      
+      lastScrollTime = now;
+
+      if (e.deltaY > 0) {
+        
+        if (currentPage === 'page1') {
+          handleNavigate('page2');
+        }
+      } else if (e.deltaY < 0) {
+        
+        if (currentPage === 'page2') {
+          handleNavigate('page1');
+        }
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel);
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, [currentPage, isTransitioning]);
 
   return (
     <div className="relative">
