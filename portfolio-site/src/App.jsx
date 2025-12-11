@@ -1,23 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import profileImg from './assets/profile_img.jpg';
 
-
-const tiltCard = () =>{
-  return 
-    <div className="w-96 min-h-[32rem] bg-white/80 backdrop-blur-sm rounded-l-[4rem] shadow-lg flex items-center justify-center flex-shrink-0 border border-blue-100 p-3">
-      <img 
-        src={profileImg}
-        alt="Profile" 
-        className="w-full h-full object-cover rounded-l-[3.5rem]" 
-      />
-    </div>
-};
-
 // Page 1 Component
 const Page1 = ({ onNavigate }) => {
   const [rectangles, setRectangles] = React.useState([]);
   const [animationEnabled, setAnimationEnabled] = React.useState(true);
-  const technologies = ['React JS', 'Tailwind CSS', 'Python', 'SaSS', 'Figma', 'Git', 'Vite'];
+  const technologies = ['React JS', 'Tailwind CSS', 'Python', 'FastAPI', 'Figma', 'Git'];
   const socials = ['Discord', 'Facebook', 'LinkedIn', 'GitHub'];
 
   React.useEffect(() => {
@@ -44,7 +32,7 @@ const Page1 = ({ onNavigate }) => {
   }, [animationEnabled]);
 
   return (
-    <div className="absolute w-full h-screen overflow-hidden bg-white">
+    <div className="relative w-full h-screen overflow-hidden bg-white">
       {/* Toggle Button */}
       <div className="absolute top-6 left-6 z-20 group">
         <button
@@ -108,7 +96,7 @@ const Page1 = ({ onNavigate }) => {
           <div className="flex gap-8 items-stretch">
             
             {/* Image Section */}
-            <div className="w-96 min-h-[32rem] bg-white/80 backdrop-blur-sm rounded-l-[4rem] shadow-lg flex items-center justify-center flex-shrink-0 border border-blue-100 p-3">
+            <div className="hidden md:flex w-96 min-h-[32rem] bg-white/80 backdrop-blur-sm rounded-l-[4rem] shadow-lg items-center justify-center flex-shrink-0 border border-blue-100 p-3">
               <img 
                 src={profileImg}
                 alt="Profile" 
@@ -121,7 +109,7 @@ const Page1 = ({ onNavigate }) => {
               
               {/* Header */}
               <div className="flex-none bg-white/80 backdrop-blur-sm rounded-tr-3xl shadow-lg p-8 border border-blue-100">
-                <h1 className="text-5xl font-bold text-gray-800">Sup, my kokujin!</h1>
+                <h1 className="text-5xl font-bold text-gray-800">Greetings!</h1>
               </div>
 
               {/* Description */}
@@ -130,7 +118,7 @@ const Page1 = ({ onNavigate }) => {
                   I'm Lawrence,<br /> a Front-end Developer speciallizes in UI design and React JS. <br /> Designated in <span className="font-bold text-green-500">Philippines</span><br /><br /> <hr /><br />
                   <ul className= "text-base">
                     <li>1 year of front-end development</li>
-                    <li>2 years of python</li>
+                    <li>1 year of python</li>
                   </ul>
                 </p>
               </div>
@@ -167,10 +155,10 @@ const Page1 = ({ onNavigate }) => {
       <div className="absolute bottom-8 right-8  z-20">
         <button
           onClick={onNavigate}
-          className="text-green-500 text-xl underline hover:text-green-600 transition-colors duration-300 hover:scale-110 transform text-opacity-70"
+          className="text-gray-400 text-xl hover:text-green-600 transition-colors duration-300 hover:scale-110 transform text-opacity-95"
 
         >
-          my projects
+          scroll down
         </button>
       </div>
 
