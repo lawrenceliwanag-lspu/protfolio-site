@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from "motion/react"
 import profileImg from './assets/profile_img.jpg';
 import SocialLinks from "./Socials";
 
@@ -92,7 +93,7 @@ const Page1 = ({ onNavigate }) => {
 
       {/* Main Content */}
       <div className="relative z-10 flex items-center justify-center h-full p-8">
-        <div className="absolute w-full max-w-6xl shadow-xl p-8 rounded-3xl border-4 border-white/30">
+        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="absolute w-full max-w-6xl shadow-xl p-8 rounded-3xl border-4 border-white/30">
           <div className="flex gap-8 items-stretch">
             
             {/* Image Section */}
@@ -153,8 +154,8 @@ const Page1 = ({ onNavigate }) => {
                       onMouseLeave={(e) => {
                         e.currentTarget.style.boxShadow = '';
                         e.currentTarget.style.borderColor = '#e5e7eb';
-                      }}
-                    >
+                      }}>
+                    
                       {tech}
                     </div>
                   ))}
@@ -163,7 +164,7 @@ const Page1 = ({ onNavigate }) => {
 
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Navigation Link */}

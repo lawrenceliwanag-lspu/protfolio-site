@@ -1,4 +1,5 @@
 import { Twitter, Github, Facebook, Linkedin, Mail } from "lucide-react";
+import { motion } from "motion/react"
 
 export default function SocialLinks({ 
   twitter, 
@@ -20,16 +21,20 @@ export default function SocialLinks({
     <div className={`flex gap-3 ${className}`}>
       {links.map(({ href, Icon, label }) => 
         href ? (
-          <a
+          <motion.a
+
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.95 }}
+
             key={label}
             href={href}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-white transition-colors hover:bg-blue-400 rounded-full p-2"
-            aria-label={label}
-          >
+            aria-label={label}>
+          
             <Icon size={size} strokeWidth={strokeWidth} />
-          </a>
+          </motion.a>
         ) : null
       )}
     </div>
