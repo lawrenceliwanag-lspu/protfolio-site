@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import profileImg from './assets/profile_img.jpg';
+import SocialLinks from "./Socials";
 
 // Page 1 Component
 const Page1 = ({ onNavigate }) => {
   const [rectangles, setRectangles] = React.useState([]);
   const [animationEnabled, setAnimationEnabled] = React.useState(true);
   const technologies = ['React JS', 'Tailwind CSS', 'Python', 'FastAPI', 'Figma', 'Git'];
-  const socials = ['Discord', 'Facebook', 'LinkedIn', 'GitHub'];
 
   React.useEffect(() => {
     if (!animationEnabled) return;
@@ -128,10 +128,13 @@ const Page1 = ({ onNavigate }) => {
               <div className="flex-1 bg-white/80 backdrop-blur-sm shadow-lg p-8 border border-blue-100 flex items-center">
                 <p className="text-xl text-gray-600 leading-relaxed">
                   I'm Lawrence,<br /> a Front-end Developer speciallizes in UI design and React JS. <br /> Designated in <span className="font-bold text-green-500">Philippines</span><br /><br /> <hr /><br />
-                  <ul className= "text-base">
-                    <li>1 year of front-end development</li>
-                    <li>1 year of python</li>
-                  </ul>
+                    <SocialLinks 
+                      twitter="https://twitter.com/your-username"
+                      github="https://github.com/lawrenceliwanag-lspu"
+                      facebook="https://www.facebook.com/Exceea"
+                      linkedin="https://linkedin.com/in/your-username"
+                      size={24}
+                    />
                 </p>
               </div>
 
