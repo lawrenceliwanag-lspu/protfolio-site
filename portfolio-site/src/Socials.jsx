@@ -6,6 +6,7 @@ export default function SocialLinks({
   github, 
   facebook, 
   linkedin,
+  mail,
   size = 24,
   strokeWidth = 1,
   className = ""
@@ -15,6 +16,7 @@ export default function SocialLinks({
     { href: github, Icon: Github, label: "GitHub" },
     { href: facebook, Icon: Facebook, label: "Facebook" },
     { href: linkedin, Icon: Linkedin, label: "LinkedIn" },
+    { href: mail, Icon: Mail, label: "Mail" },
   ];
 
   return (
