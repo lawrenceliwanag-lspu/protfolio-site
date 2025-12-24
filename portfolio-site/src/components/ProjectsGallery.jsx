@@ -4,28 +4,25 @@ import reactLogo from '../assets/react.svg';
 
 const sampleProjects = [
   {
-    id: 'p1',
-    title: 'Interactive UI Kit',
-    desc: 'A small component library with accessible primitives and storybook examples.',
-    tags: ['React', 'Design'],
-  },
-  {
     id: 'p2',
     title: 'Solsense - Terrain Analyzer',
     desc: 'A demo app for visualizing terrain slope value for solar plant planning (experimental).',
-    tags: ['React', 'Data'],
+    tags: ['React', 'Python','FastAPI'],
+    link: 'https://github.com/lawrenceliwanag-lspu/solsense-react-webapp',
   },
   {
     id: 'p3',
     title: 'Portfolio Site',
     desc: 'This very portfolio — built with Vite + Tailwind + Motion.',
-    tags: ['React', 'CSS'],
+    tags: ['React', 'TailwindCSS'],
+    link: 'https://github.com/lawrenceliwanag-lspu/protfolio-site',
   },
   {
     id: 'p4',
-    title: 'Design System',
-    desc: 'Tokens, components and guidelines for consistent UI.',
-    tags: ['Design', 'Figma'],
+    title: 'Personal Video frontend',
+    desc: 'my personal frontend for my FTP server to stream videos from anywhere.',
+    tags: ['Design', 'React'],
+    link: 'https://www.google.com',
   },
 ];
 
@@ -37,7 +34,7 @@ const Tag = ({ tag, active, onClick }) => (
     {tag}
   </button>
 );
-
+//aaa
 export default function ProjectsGallery({ onBack }) {
   const [activeTag, setActiveTag] = useState('All');
   const [query, setQuery] = useState('');
@@ -83,27 +80,29 @@ export default function ProjectsGallery({ onBack }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence>
             {filtered.map(project => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -8, scale: 0.98 }}
-                transition={{ duration: 0.35 }}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-blue-50 hover:shadow-2xl hover:scale-[1.01] transition-transform"
-              >
-                <div className="flex gap-4 p-4 rounded-xl items-center">
-                  <img src={reactLogo} alt="thumb" className="w-20 h-20 object-contain rounded-lg bg-white p-2" />
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-800">{project.title}</h3>
-                    <p className="text-sm text-gray-600 mt-1">{project.desc}</p>
-                    <div className="mt-3 flex flex-wrap">
-                      {project.tags.map(tag => (
-                        <span key={tag} className="text-xs mr-2 mb-2 px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+                <a href={project.link} target="_blank">
+                    <motion.div
+                        key={project.id}
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -8, scale: 0.98 }}
+                        transition={{ duration: 0.35 }}
+                        className="bg-white backdrop-blur-sm rounded-2xl shadow-lg border border-blue-50 hover:shadow-2xl hover:scale-[1.01] transition-transform"
+                    >
+                        <div className="flex gap-4 p-4 rounded-xl items-center max-h-[15vh] min-h-[15vh]">
+                        <img src={reactLogo} alt="thumb" className="w-20 h-20 object-contain rounded-lg bg-white p-2" />
+                        <div className="flex-1">
+                            <h3 className="text-lg font-semibold text-gray-800">{project.title}</h3>
+                            <p className="text-sm text-gray-600 mt-1">{project.desc}</p>
+                            <div className="mt-3 flex flex-wrap">
+                            {project.tags.map(tag => (
+                                <span key={tag} className="text-xs mr-2 mb-2 px-2 py-1 rounded-full bg-gray-100 text-gray-700">{tag}</span>
+                            ))}
+                            </div>
+                        </div>
+                        </div>
+                    </motion.div>
+                </a>
             ))}
           </AnimatePresence>
         </div>
